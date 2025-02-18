@@ -92,7 +92,6 @@ export const routes: Routes = [
                     import('./pages/checkout/checkout.component').then(
                         (c) => c.CheckoutComponent
                     ),
-                data: { prerender: false },
                 title: 'Checkout',
             },
             {
@@ -101,7 +100,6 @@ export const routes: Routes = [
                     import('./pages/details/details.component').then(
                         (c) => c.DetailsComponent
                     ),
-                data: { prerender: false },
                 title: 'Details',
             },
             {
