@@ -1,0 +1,129 @@
+<section class = "checkout-section">
+    <div class = "form-container">
+        <!-- Step 1: Enter Email -->
+        <h2 class = "form-title">✨ CheckOut ✨</h2>
+        <p class = "text-gray-600 dark:text-gray-300 text-center">Enter your details</p>
+        <form
+            [formGroup] = "checkOut"
+            class = "space-y-4 mt-4"
+        >
+            <!-- Address Input -->
+            <div>
+                @let detailsControl = checkOut.get('details');
+                <label
+                    class = "label-input-form"
+                    for = "details"
+                >Address</label>
+                <textarea
+                    class = "input-form"
+                    formControlName = "details"
+                    id = "details"
+                    name = "details"
+                    placeholder = "Enter your Address Details"
+                ></textarea>
+                @if (detailsControl?.touched && detailsControl?.errors) {
+                    <div
+                        class = "error-message"
+                        role = "alert"
+                    >
+                        <ul class = "error-list">
+                            @if (detailsControl?.getError('required')) {
+                                <li>Details Is Required</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+
+            <!-- Phone Input -->
+            <div>
+                @let phoneControl = checkOut.get('phone');
+                <label
+                    class = "label-input-form"
+                    for = "phone"
+                >Phone Number</label>
+                <input
+                    class = "input-form"
+                    formControlName = "phone"
+                    id = "phone"
+                    name = "phone"
+                    placeholder = "Enter your phone number"
+                    required
+                    type = "tel"
+                >
+                @if (phoneControl?.touched && phoneControl?.errors) {
+                    <div
+                        class = "error-message"
+                        role = "alert"
+                    >
+                        <ul class = "error-list">
+                            @if (phoneControl?.getError('required')) {
+                                <li>Phone Is Required</li>
+                            } @else if (phoneControl?.getError('pattern')) {
+                                <li>Accept Only Egypt Phone Numbers</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+
+            <!-- City Input -->
+            <div>
+                @let cityControl = checkOut.get('city');
+                <label
+                    class = "label-input-form"
+                    for = "city"
+                >City</label>
+                <input
+                    class = "input-form"
+                    formControlName = "city"
+                    id = "city"
+                    name = "city"
+                    placeholder = "Enter your City"
+                    type = "text"
+                >
+                @if (cityControl?.touched && cityControl?.errors) {
+                    <div
+                        class = "error-message"
+                        role = "alert"
+                    >
+                        <ul class = "error-list">
+                            @if (cityControl?.getError('required')) {
+                                <li>City Is Required</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+
+            <!-- Payment Buttons -->
+            <div class = "payment-buttons">
+                <button
+                    (click) = "checkout('online')"
+                    [disabled] = "checkOut.invalid"
+                    class = "payment-btn payment-btn-online"
+                    type = "button"
+                >
+                    <i class = "fas fa-credit-card"></i>
+                    Pay Online
+                    @if (isLoading) {
+                        <span class = "spinner"><i class = "fas fa-spin fa-spinner"></i></span>
+                    }
+                </button>
+
+                <button
+                    (click) = "checkout('cash')"
+                    [disabled] = "checkOut.invalid"
+                    class = "payment-btn payment-btn-cash"
+                    type = "button"
+                >
+                    <i class = "fas fa-money-bill-wave"></i>
+                    Cash on Delivery
+                    @if (isLoading) {
+                        <span class = "spinner"><i class = "fas fa-spin fa-spinner"></i></span>
+                    }
+                </button>
+            </div>
+        </form>
+    </div>
+</section>

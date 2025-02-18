@@ -1,0 +1,82 @@
+<section>
+    <div class = "product-container">
+        <!-- Product Image Gallery -->
+        <div class = "flex flex-col md:flex-row pb-8 md:pb-0 items-center">
+            <!-- Thumbnails -->
+            <div class = "flex flex-row md:flex-col pb-8 md:pb-0 md:space-y-3 me-4">
+                @for (product of productDetails?.images?.slice(0, 4); track $index) {
+                    <img
+                        (click) = "changeMainImage(product)"
+                        [src] = "product"
+                        alt = "Product Thumbnail"
+                        class = "thumbnail"
+                    >
+                }
+            </div>
+            <!-- Main Product Image -->
+            <div class = "w-full max-w-sm">
+                <img
+                    [src] = "mainImage"
+                    alt = "Product Image"
+                    class = "main-image"
+                >
+            </div>
+        </div>
+        <!-- Product Details -->
+        <div>
+            <h2 class = "product-title">{{ productDetails.title }}</h2>
+            <!-- Ratings & Sold Count -->
+            <div class = "product-rating">
+                <span class = "text-yellow-500 drop-shadow-sm">⭐ {{ productDetails.ratingsAverage }}</span>
+                <span class = "ml-2">({{ productDetails.ratingsQuantity }} reviews)</span>
+                <span class = "ml-4 text-sm">|Sold: {{ productDetails.sold }}</span>
+            </div>
+            <p class = "text-gray-700 dark:text-gray-300 mt-2">{{ productDetails.description }}</p>
+            <!-- Product Price  -->
+            <div class = "flex items-center space-x-2 mt-4">
+                @if (productDetails.priceAfterDiscount) {
+                    <span class = "product-price">
+                        {{ productDetails.priceAfterDiscount | currency:'GBP':'symbol':'1.2-2' }}
+                    </span>
+                    <span class = "text-gray-500 dark:text-gray-400 line-through text-lg">
+                        {{ productDetails.price | currency:'GBP':'symbol':'1.2-2' }}
+                    </span>
+                } @else {
+                    <span class = "product-price">
+                        {{ productDetails.price | currency:'GBP':'symbol':'1.2-2' }}
+                    </span>
+                }
+            </div>
+
+            <!-- Stock Status -->
+            <p
+                [class] = "productDetails.quantity > 0 ? 'stock-status bg-green-100 text-green-700' : 'stock-status bg-red-100 text-red-700'"
+            >
+                {{ productDetails.quantity > 0 ? 'In Stock' : 'Out of Stock' }}
+            </p>
+
+            <!-- Category & Brand -->
+            <div class = "mt-4 py-2 text-sm text-gray-700 dark:text-gray-300">
+                <p class = "product-category">Product Details:</p>
+                <p class = "mt-1">
+                    <strong class = "product-category-label">Category:</strong>
+                    {{ productDetails.category?.name || 'Unknown' }}
+                </p>
+                <p class = "mt-1">
+                    <strong class = "product-brand-label">Brand:</strong>
+                    {{ productDetails.brand?.name || 'No Brand' }}
+                </p>
+            </div>
+
+            <!-- Buttons -->
+            <div class = "mt-20 flex flex-col sm:flex-row gap-4">
+                <button
+                    (click) = "addProductToCart(productId)"
+                    class = "add-to-cart-btn  "
+                >Add to Cart
+                </button>
+                <button class = "wishlist-btn">Wishlist</button>
+            </div>
+        </div>
+    </div>
+</section>

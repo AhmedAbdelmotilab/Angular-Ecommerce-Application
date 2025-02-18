@@ -1,0 +1,339 @@
+<section class = "flex items-center justify-center transition-colors duration-300">
+    <div class = "hidden xl:block 2xl:block">
+        <div #animationContainer></div>
+    </div>
+    <div class = "form-style">
+        <h2 class = "form-title">
+            ✨ Registration Form ✨
+            <span class = " absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+        </h2>
+        <!-- Form Inputs -->
+        <form
+            (ngSubmit) = "submitForm()"
+            [formGroup] = "registerForm"
+            class = "space-y-4 mt-4"
+        >
+            <!-- Name Input -->
+            <div>
+                @let nameControl = registerForm.get('name');
+                <label
+                    class = "label-input-form"
+                    for = "name"
+                >Full Name</label>
+                <input
+                    class = "input-form"
+                    formControlName = "name"
+                    id = "name"
+                    name = "name"
+                    placeholder = "Enter your name"
+                    required
+                    type = "text"
+                >
+                <!-- Adding Validation Based On The TypeScript Validation  -->
+                @if (nameControl?.touched && nameControl?.errors) {
+                    <div
+                        class = "flex p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                        role = "alert"
+                    >
+                        <svg
+                            aria-hidden = "true"
+                            class = "shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                            fill = "currentColor"
+                            viewBox = "0 0 20 20"
+                            xmlns = "http://www.w3.org/2000/svg"
+                        >
+                            <path d = "M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class = "sr-only">Danger</span>
+                        <div>
+                            <span class = "font-medium">Ensure that these requirements are met:</span>
+                            <ul class = "mt-1.5 list-disc list-inside">
+                                @if (nameControl?.getError('required')) {
+                                    <li>Name Is Required</li>
+                                } @else if (nameControl?.getError('minlength')) {
+                                    <li>Name Should be more than or equal 3 chars</li>
+                                } @else if (nameControl?.getError('maxlength')) {
+                                    <li>Name Should be less than or equal 20 chars</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!--  -->
+            <!-- Email Input -->
+            <div>
+                @let emailControl = registerForm.get('email');
+                <label
+                    class = "label-input-form"
+                    for = "email"
+                >Email</label>
+                <input
+                    class = "input-form"
+                    formControlName = "email"
+                    id = "email"
+                    name = "email"
+                    placeholder = "Enter your email"
+                    required
+                    type = "email"
+                >
+                <!-- Adding Validation Based On The TypeScript Validation  -->
+                @if (emailControl?.touched && emailControl?.errors) {
+                    <div
+                        class = "flex p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                        role = "alert"
+                    >
+                        <svg
+                            aria-hidden = "true"
+                            class = "shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                            fill = "currentColor"
+                            viewBox = "0 0 20 20"
+                            xmlns = "http://www.w3.org/2000/svg"
+                        >
+                            <path d = "M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class = "sr-only">Danger</span>
+                        <div>
+                            <span class = "font-medium">Ensure that these requirements are met:</span>
+                            <ul class = "mt-1.5 list-disc list-inside">
+                                @if (emailControl?.getError('required')) {
+                                    <li>Email Is Required</li>
+                                } @else if (emailControl?.getError('email')) {
+                                    <li>Email format should be like example&#64;domain.com</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!--  -->
+            <!-- Password Input -->
+            <div class = "relative">
+                @let passwordControl = registerForm.get('password');
+                <label
+                    class = "label-input-form"
+                    for = "password"
+                >Password</label>
+                <input
+                    [type] = "!toggleInput?'password' :'text'"
+                    class = "input-form"
+                    formControlName = "password"
+                    id = "password"
+                    name = "password"
+                    placeholder = "Enter password"
+                    required
+                >
+                <span
+                    (click) = "togglePassword()"
+                    class = "absolute top-10 right-5"
+                >
+                    @if (toggleInput) {
+                        <i class = "fa-solid fa-eye"></i>
+                    } @else {
+                        <i class = "fa-solid fa-eye-slash"></i>
+                    }
+                </span>
+                <!-- Adding Validation Based On The TypeScript Validation  -->
+                @if (passwordControl?.touched && passwordControl?.errors) {
+                    <div
+                        class = "flex p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                        role = "alert"
+                    >
+                        <svg
+                            aria-hidden = "true"
+                            class = "shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                            fill = "currentColor"
+                            viewBox = "0 0 20 20"
+                            xmlns = "http://www.w3.org/2000/svg"
+                        >
+                            <path d = "M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class = "sr-only">Danger</span>
+                        <div>
+                            <span class = "font-medium">Ensure that these requirements are met:</span>
+                            <ul class = "mt-1.5 list-disc list-inside">
+                                @if (passwordControl?.getError('required')) {
+                                    <li>Password Is Required</li>
+                                } @else if (passwordControl?.getError('pattern')) {
+                                    <li>Password must start with upperCase then from 6 to more any chars</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!--  -->
+            <!-- Confirm Password Input -->
+            <div class = "relative">
+                @let rePasswordControl = registerForm.get('rePassword');
+                <label
+                    class = "label-input-form"
+                    for = "rePassword"
+                >Confirm Password</label>
+                <input
+                    [type] = "!toggleInput?'password' :'text'"
+                    class = "input-form"
+                    formControlName = "rePassword"
+                    id = "rePassword"
+                    name = "rePassword"
+                    placeholder = "Re-enter password"
+                    required
+                >
+                <span
+                    (click) = "togglePassword()"
+                    class = "absolute top-10 right-5"
+                >
+                    @if (toggleInput) {
+                        <i class = "fa-solid fa-eye"></i>
+                    } @else {
+                        <i class = "fa-solid fa-eye-slash"></i>
+                    }
+                </span>
+                @if (registerForm.getError('mismatch') && rePasswordControl?.touched) {
+                    <div
+                        class = "flex p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                        role = "alert"
+                    >
+                        <svg
+                            aria-hidden = "true"
+                            class = "shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                            fill = "currentColor"
+                            viewBox = "0 0 20 20"
+                            xmlns = "http://www.w3.org/2000/svg"
+                        >
+                            <path d = "M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class = "sr-only">Danger</span>
+
+                        <div>
+                            <span class = "font-medium">Ensure that these requirements are met:</span>
+                            <ul class = "mt-1.5 list-disc list-inside">
+                                <li>Password confirmation is incorrect</li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- Phone Input -->
+            <div>
+                @let phoneControl = registerForm.get('phone');
+                <label
+                    class = "label-input-form"
+                    for = "phone"
+                >Phone Number</label>
+                <input
+                    class = "input-form"
+                    formControlName = "phone"
+                    id = "phone"
+                    name = "phone"
+                    placeholder = "Enter your phone number"
+                    required
+                    type = "tel"
+                >
+                <!-- Adding Validation Based On The TypeScript Validation  -->
+                @if (phoneControl?.touched && phoneControl?.errors) {
+                    <div
+                        class = "flex p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                        role = "alert"
+                    >
+                        <svg
+                            aria-hidden = "true"
+                            class = "shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                            fill = "currentColor"
+                            viewBox = "0 0 20 20"
+                            xmlns = "http://www.w3.org/2000/svg"
+                        >
+                            <path d = "M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class = "sr-only">Danger</span>
+                        <div>
+                            <span class = "font-medium">Ensure that these requirements are met:</span>
+                            <ul class = "mt-1.5 list-disc list-inside">
+                                @if (phoneControl?.getError('required')) {
+                                    <li>Phone Is Required</li>
+                                } @else if (phoneControl?.getError('pattern')) {
+                                    <li>Accept Only Egypt Phone Numbers</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!--  -->
+            <button
+                [disabled] = "isLoading"
+                class = "btn-form"
+                type = "submit"
+            >
+                Register
+                @if (isLoading) {
+                    <span class = "ps-5"><i class = "fas fa-spin fa-spinner"></i></span>
+                }
+            </button>
+            @if (msgError) {
+                <div
+                    class = "flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role = "alert"
+                >
+                    <div class = "mx-auto">
+                        <span class = "font-bold"> {{ msgError }}</span>
+                    </div>
+                </div>
+            }
+            @if (isSuccess) {
+                <div
+                    class = "flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                    role = "alert"
+                >
+                    <div class = "mx-auto">
+                        <span class = "font-bold">{{ isSuccess }}</span>
+                    </div>
+                </div>
+            }
+        </form>
+        <!-- Divider -->
+        <div class = "flex items-center my-6">
+            <hr class = "flex-grow border-gray-300">
+            <span class = "px-3 text-gray-500 text-sm dark:text-white">or register with</span>
+            <hr class = "flex-grow border-gray-300">
+        </div>
+        <!-- Social Media Buttons -->
+        <div class = "flex flex-col sm:flex-col md:flex-row justify-center items-center space-x-0 md:space-x-8 space-y-3 md:space-y-0 mx-auto md:w-full">
+            <a
+                class = "flex items-center px-8 py-2 border rounded-lg shadow-md bg-white text-gray-700 hover:scale-105 transition"
+                href = "#"
+            >
+                <i class = "fab fa-google text-red-500 mr-2"></i> Google
+            </a>
+            <a
+                class = "flex items-center px-6 py-2 border rounded-lg shadow-md bg-white text-gray-700 hover:scale-105 transition"
+                href = "#"
+            >
+                <i class = "fab fa-facebook text-blue-600 mr-2"></i> Facebook
+            </a>
+            <a
+                class = "flex items-center px-8 py-2 border rounded-lg shadow-md bg-white text-gray-700 hover:scale-105 transition"
+                href = "#"
+            >
+                <i class = "fab fa-twitter text-blue-400 mr-2"></i> Twitter
+            </a>
+        </div>
+        <!-- Divider -->
+        <div class = "flex items-center my-6">
+            <hr class = "flex-grow border-gray-300">
+        </div>
+        <!-- Already have an account? -->
+        <div class = "text-center mt-4">
+            <p class = "text-sm text-gray-600 dark:text-white">
+                Already have an account?
+                <a
+                    class = " bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent   hover:text-blue-800 hover:underline font-medium transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    routerLink = "/login"
+                >
+                    Login here
+                </a>
+
+            </p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,169 @@
+<nav class = "bg-gradient-to-r from-purple-600 to-blue-600 border-b border-white/10  dark:border-blue-600 dark:from-[#111827] dark:to-gray-900">
+    <div class = "max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto px-10 py-4 ">
+        <a
+            class = "flex items-center  rtl:space-x-reverse"
+            routerLink = "/home"
+        >
+            <img
+                alt = "creative market Logo"
+                class = "h-10 pe-3"
+                src = "../images/logo.svg"
+            />
+            <img
+                alt = "creative market Logo"
+                class = "h-10"
+                src = "../images/creativemarket.svg"
+            />
+        </a>
+        <button
+            aria-controls = "navbar-default"
+            aria-expanded = "false"
+            class = "inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-white rounded-lg md:hidden hover:bg-white/10"
+            data-collapse-toggle = "navbar-default"
+            type = "button"
+        >
+            <span class = "sr-only">Open main menu</span>
+            <svg
+                aria-hidden = "true"
+                class = "w-5 h-5"
+                fill = "none"
+                viewBox = "0 0 17 14"
+                xmlns = "http://www.w3.org/2000/svg"
+            >
+                <path
+                    d = "M1 1h15M1 7h15M1 13h15"
+                    stroke = "currentColor"
+                    stroke-linecap = "round"
+                    stroke-linejoin = "round"
+                    stroke-width = "2"
+                />
+            </svg>
+        </button>
+        <!-- Navigation Links -->
+        <div
+            class = "hidden md:ps-20 ps-5 pe-5 py-4 md:py-0 items-center justify-center flex-grow self-end w-full md:flex md:w-auto "
+            id = "navbar-default"
+        >
+            <ul
+                class = "items-center justify-center text-center capitalize font-medium flex flex-col  md:p-0 mt-4 rounded-lg bg-white/10 md:bg-transparent md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0"
+            >
+                @if (isLogin()) {
+                    <li>
+                        <a
+                            routerLink = "/home"
+                            routerLinkActive = "active "
+                            class = "block py-2 px-3 text-white rounded-sm  transition duration-300 hover:text-black dark:hover:text-blue-600  "
+                            aria-current = "page"
+                        >
+                            home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            routerLink = "/products"
+                            routerLinkActive = "active"
+                            class = "block py-2 px-3 text-white rounded-sm transition duration-300 hover:text-black dark:hover:text-blue-600 "
+                        >
+                            products
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            routerLink = "/categories"
+                            routerLinkActive = "active"
+                            class = "block py-2 px-3 text-white rounded-sm transition duration-300 hover:text-black dark:hover:text-blue-600"
+                        >
+                            categories
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            routerLink = "/brands"
+                            routerLinkActive = "active"
+                            class = "block py-2 px-3 text-white rounded-sm transition duration-300 hover:text-black dark:hover:text-blue-600"
+                        >
+                            brands
+                        </a>
+                    </li>
+                }
+            </ul>
+            <ul class = " bg-white/10 md:bg-transparent flex  sm:flex-row justify-around items-center p-4 sm:px-10 md:p-0 md:space-x-6 rtl:space-x-reverse  text-center font-medium capitalize rounded-lg mt-4 md:mt-0 ms-auto">
+                @if (! isLogin()) {
+                    <li>
+                        <a
+                            routerLink = "/login"
+                            routerLinkActive = "active"
+                            class = "block py-2 px-3 text-white rounded-sm transition duration-300 hover:text-black "
+                        >
+                            login
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            routerLink = "/register"
+                            routerLinkActive = "active"
+                            class = "block py-2 px-3 text-white rounded-sm transition duration-300 hover:text-black "
+                        >
+                            register
+                        </a>
+                    </li>
+                } @else {
+                    <li>
+                        <a
+                            routerLink = "/cart"
+                            routerLinkActive = "active"
+                            class = "block py-2 px-3 text-white rounded-sm transition duration-300 hover:text-black dark:hover:text-blue-600 "
+                        >
+                            <i class = "fas fa-cart-shopping text-2xl"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            routerLink = "/allorders"
+                            routerLinkActive = "active"
+                            class = "block py-2 px-3 text-white rounded-sm transition duration-300 hover:text-black dark:hover:text-blue-600 "
+                        >
+                            <i class = "fas  fa-truck-fast text-2xl"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            (click) = "authService.logoutUser()"
+                            role = "button"
+                            class = "btn-logout"
+                            tabindex = "0"
+                        >
+                            Logout
+                        </a>
+                    </li>
+
+                }
+                <li>
+                    <div class = "relative inline-block w-16 mr-2 align-middle select-none transition duration-200 ease-in">
+                        <!-- Input Checkbox -->
+                        <input
+                            (change) = "toggleDarkMode()"
+                            [checked] = "isDarkMode"
+                            class = "toggle-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-blue-700 border-4 appearance-none cursor-pointer transform transition-transform duration-200 ease-in-out"
+                            id = "toggle"
+                            name = "toggle"
+                            type = "checkbox"
+                        />
+                        <label
+                            class = "toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer dark:bg-blue-700"
+                            for = "toggle"
+                        >
+                            <span class = "absolute left-1 top-1/2 transform -translate-y-1/2 text-yellow-400 transition-opacity duration-200 ease-in-out">
+                                <i class = "fas fa-sun"></i>
+                            </span>
+                            <span class = "absolute right-1 top-1/2 transform -translate-y-1/2 text-black dark:text-white transition-opacity duration-200 ease-in-out">
+                                <i class = "fas fa-moon"></i>
+                            </span>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

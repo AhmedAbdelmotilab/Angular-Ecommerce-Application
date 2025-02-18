@@ -1,0 +1,116 @@
+@if (orders.at(0)) {
+    <section class = "orders-summary-section">
+        <!-- Header with Gradient -->
+        <div class = "header-gradient">
+            <h2 class = "text-3xl font-bold text-center">Orders Summary</h2>
+        </div>
+        <div class = "mt-6 space-y-8">
+            @for (order of orders; track $index) {
+                <div class = "order-card">
+                    <!-- Header -->
+                    <div class = "order-header">
+                        <!-- Order Title -->
+                        <h2 class = "form-title">Order #{{ order.id }}</h2>
+                        <!-- Status Badge -->
+                        @if (order.isDelivered) {
+                            <div class = "status-badge-delivered">Delivered</div>
+                        } @else {
+                            <div class = "status-badge-pending">Pending</div>
+                        }
+                    </div>
+
+                    <!-- Order Info -->
+                    <div class = "order-info-grid">
+                        <!-- Customer Info -->
+                        <div class = "customer-info">
+                            <p class = "customer-info-item">
+                                <span class = "customer-info-label">👤 Customer:</span> {{ order.user.name }}
+                            </p>
+                            <p class = "customer-info-item">
+                                <span class = "customer-info-label">📧 Email:</span> <span class = "sm:ml-2">{{ order.user.email }}</span>
+                            </p>
+                            <p class = "customer-info-item">
+                                <span class = "customer-info-label">📞 Phone:</span> {{ order.user.phone }}
+                            </p>
+                        </div>
+
+                        <!-- Order Details -->
+                        <div class = "order-details">
+                            <p class = "order-details-item">
+                                <span class = "order-details-label text-green-600">💰 Total:</span>
+                                <span class = "text-xl font-extrabold text-gray-900 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
+                £{{ order.totalOrderPrice | currency:'GBP':'symbol':'1.2-2' }}
+              </span>
+                            </p>
+                            <p class = "order-details-item">
+                                <span class = "order-details-label text-indigo-600">💳 Payment:</span> {{ order.paymentMethodType }}
+                            </p>
+                            <p class = "order-details-item">
+                                <span class = "order-details-label text-red-600">✅ Paid:</span>
+                                @if (order.isPaid) {
+                                    <span class = "font-bold px-3 py-1 rounded-md bg-green-500 text-white shadow-md">Yes</span>
+                                } @else {
+                                    <span class = "font-bold px-3 py-1 rounded-md bg-red-500 text-white shadow-md">No</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Address -->
+                    <div class = "shipping-address">
+                        <h3 class = "shipping-address-title">Shipping Information</h3>
+                        <p class = "shipping-address-info">
+                            <span class = "font-medium">📍 Shipping Address:</span>
+                            <span class = "sm:ml-2">{{ order.shippingAddress.details }}, {{ order.shippingAddress.city }}</span>
+                        </p>
+                        <p class = "text-sm text-blue-900 dark:text-blue-200 mt-1">📞 {{ order.shippingAddress.phone }}</p>
+                    </div>
+
+                    <!-- Order Items -->
+                    <div class = "order-items">
+                        <h3 class = "order-items-title">🛍️ Items</h3>
+                        <div class = "grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            @for (item of order.cartItems; track item._id) {
+                                <div class = "order-item-card">
+                                    <!-- Image -->
+                                    <img
+                                        [src] = "item.product.imageCover"
+                                        alt = "{{ item.product.title }}"
+                                        class = "order-item-image"
+                                    />
+
+                                    <!-- Info -->
+                                    <div class = "order-item-info">
+                                        <p class = "text-gray-900 dark:text-gray-100 font-semibold">{{ item.product.title }}</p>
+                                        <p class = "text-sm text-gray-700 dark:text-gray-300">
+                                            <span class = "font-medium text-blue-700 dark:text-blue-400">🏷️ Brand:</span> {{ item.product.brand.name }}
+                                        </p>
+                                        <p class = "text-sm text-gray-700 dark:text-gray-300">
+                                            <span class = "font-medium text-blue-700 dark:text-blue-400">📦 Category:</span> {{ item.product.category.name }}
+                                        </p>
+                                    </div>
+
+                                    <!-- Price & Quantity -->
+                                    <div class = "text-center sm:text-right">
+                                        <p class = "order-item-price">💰 £{{ item.price | currency:'GBP':'symbol':'1.2-2' }}</p>
+                                        <p class = "order-item-quantity">📊 Qty: {{ item.count }}</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </section>
+
+} @else {
+    <section class = "empty-cart-section">
+        <img
+            class = "w-full  lg:w-2/5 h-auto"
+            src = "../images/Empty-Orders.svg"
+            alt = ""
+        >
+    </section>
+}
