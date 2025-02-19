@@ -7,8 +7,6 @@ The [Angular-Ecommerce-Application](https://github.com/AhmedAbdelmotilab/Angular
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
 - [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -65,9 +63,6 @@ To set up the project locally, follow these steps:
 
 The application is deployed and accessible at [https://angular-ecommerce-application.vercel.app](https://angular-ecommerce-application.vercel.app). Deployment is managed through Vercel, offering features like automatic HTTPS and global CDN for optimal performance.
 
-## Contributing
-
-Contributions are welcome! To contribute:
 
 1. Fork the repository.
 2. Create a new branch: `git checkout -b feature/YourFeatureName`.
