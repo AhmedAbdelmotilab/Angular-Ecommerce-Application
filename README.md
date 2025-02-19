@@ -6,7 +6,9 @@ The [Angular-Ecommerce-Application](https://github.com/AhmedAbdelmotilab/Angular
 - [Technologies Used](#technologies-used)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
+- [Screenshots](#screenshots)
 - [Deployment](#deployment)
+- [Contributing](#contributing)
 
 ## Features
 
@@ -15,11 +17,13 @@ The [Angular-Ecommerce-Application](https://github.com/AhmedAbdelmotilab/Angular
 - **Shopping Cart:** Add products to the cart, manage quantities, and proceed to checkout with ease.
 - **Order Management:** Track orders, view order history, and receive updates on order statuses.
 - **Responsive Design:** Optimized for various devices, ensuring a consistent user experience across desktops, tablets, and mobile phones.
+- **Light and Dark Mode:** Supports both light and dark themes for a customizable user experience.
 
 ## Technologies Used
 
 - **Frontend Framework:** Angular
 - **Styling:** SCSS (Sassy CSS) and Tailwind CSS
+- **UI Enhancements:** Flowbite, SweetAlert2, ngx-toastr
 - **Build and Configuration Tools:**
   - Angular CLI
   - Tailwind CSS Configuration
@@ -57,12 +61,28 @@ To set up the project locally, follow these steps:
    ```bash
    ng serve
    ```
-    By default, the application will run on `http://localhost:4200/`.  
+   By default, the application will run on `http://localhost:4200/`.
+
+## Screenshots
+![Login-Light](https://github.com/user-attachments/assets/e4612ed8-4ea8-4490-8de5-762304594e5b)
+![Login-Dark](https://github.com/user-attachments/assets/38053f21-04bf-4348-bcab-f4560287184a)
+![Register-Light](https://github.com/user-attachments/assets/c7bbbdca-4a9f-4ae2-95b8-51f55f7ca2ac)
+![Register-Dark](https://github.com/user-attachments/assets/658ee016-cf4f-4bd9-bd30-3e6b003201a0)
+![Home](https://github.com/user-attachments/assets/186b13ba-0806-4628-b07d-e3851ad6dcb5)
+![Products](https://github.com/user-attachments/assets/80f449c6-abac-4abf-b14a-8847ab332e14)
+![Product-Details](https://github.com/user-attachments/assets/e96593eb-43ad-4601-a7a1-fbb0e13cbad4)
+![Cart](https://github.com/user-attachments/assets/cb0c119c-9085-4306-8cea-554f458dd0ab)
+![CheckOut](https://github.com/user-attachments/assets/bf8c9f44-ad6e-4059-875a-7ab24cce626a)
+![Orders](https://github.com/user-attachments/assets/229cf048-c56e-4bf9-8358-dbf3d9cdcded)
+
 
 ## Deployment
 
 The application is deployed and accessible at [https://angular-ecommerce-application.vercel.app](https://angular-ecommerce-application.vercel.app). Deployment is managed through Vercel, offering features like automatic HTTPS and global CDN for optimal performance.
 
+## Contributing
+
+Contributions are welcome! To contribute:
 
 1. Fork the repository.
 2. Create a new branch: `git checkout -b feature/YourFeatureName`.
