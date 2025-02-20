@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '../../shared/pipes/search/search.pipe';
 import { RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
+import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 
 @Component ( {
     selector : 'app-products' ,
@@ -28,6 +29,7 @@ export class ProductsComponent implements OnInit , OnDestroy {
     subscribeAllProducts : Subscription = new Subscription ();
     subscribeAddProductToCard : Subscription = new Subscription ();
     subscribeAllCategories : Subscription = new Subscription ();
+    subscribeAddProductToWishlist : Subscription = new Subscription ();
     categories : ICategory[] = [];
     filteredProducts : IProduct[] = [];
     selectedCategory : string = '';
@@ -37,6 +39,7 @@ export class ProductsComponent implements OnInit , OnDestroy {
     private readonly cart = inject ( CartService );
     private readonly toastrService = inject ( ToastrService );
     private readonly categoriesServices = inject ( CategoriesService );
+    private readonly wishlistService = inject ( WishlistService );
 
     filterProducts () : void {
         console.log ( 'Selected Category:' , this.selectedCategory );
@@ -89,6 +92,17 @@ export class ProductsComponent implements OnInit , OnDestroy {
         } );
     }
 
+    addProductToWishlist ( id : string ) : void {
+        this.subscribeAddProductToWishlist = this.wishlistService.addProductToWishlist ( id ).subscribe ( {
+            next : ( res ) => {
+                console.log ( res );
+                if ( res.status === 'success' ) {
+                    this.toastrService.success ( res.message , 'Creative Market' );
+                }
+            }
+        } );
+    }
+
     resetFilters () : void {
         this.selectedCategory = '';
         this.selectedPrice = null;
@@ -105,5 +119,7 @@ export class ProductsComponent implements OnInit , OnDestroy {
         console.log ( 'UnsubscribeAllProductsDone' );
         this.subscribeAddProductToCard.unsubscribe ();
         console.log ( 'UnsubscribeAddToCardDone' );
+        this.subscribeAddProductToWishlist.unsubscribe ();
+        console.log ( 'UnsubscribeAddProductToWishlistDone' );
     }
 }

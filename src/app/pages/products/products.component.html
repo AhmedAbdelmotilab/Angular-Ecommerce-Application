@@ -105,7 +105,7 @@
 
                             <div class = "card-footer">
                                 <div class = "card-price">
-                                    {{ product.price | currency:'GBP':'symbol':'1.2-2' }}
+                                    {{ product.price | currency:'GBP':'symbol':'1.0-0' }}
                                 </div>
                                 <div class = "card-rating flex items-center">
                                     <div class = "flex">
@@ -126,14 +126,21 @@
                         </div>
                     </div>
                 </div>
-                <div class = "pt-2">
+                <div class = "pt-2 flex justify-center items-center gap-[3%]">
                     <button
                         (click) = "addProductToCart(product.id)"
                         class = "add-to-cart-btn-product"
                     >
                         Add To Cart
                     </button>
+                    <button
+                        (click) = "addProductToWishlist(product.id)"
+                        class = "wishlist-btn"
+                    >
+                        <i class = "fa fa-heart"></i>
+                    </button>
                 </div>
+
             </div>
         }
     </div>

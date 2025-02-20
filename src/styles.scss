@@ -1,95 +1,96 @@
 @use "ngx-owl-carousel-o/lib/styles/scss/owl.carousel" as owl;
 @use "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default" as owlTheme;
 @use "ngx-toastr/toastr" as toastr;
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @layer components {
     .toggle-checkbox:checked {
         @apply right-0 border-gray-700;
-        right: 0;
-        border-color: #374151;
+        right        : 0;
+        border-color : #374151;
     }
 
     .toggle-checkbox:checked + .toggle-label {
         @apply bg-gray-700;
-        background-color: #374151;
+        background-color : #374151;
     }
 
     [type="checkbox"]:checked {
-        background-image: unset;
+        background-image : unset;
     }
 }
 
 body {
-    font-family: "Montserrat", serif;
+    font-family : "Montserrat", serif;
 }
 
 /* For The Loading Animation */
 /* Container for the spinner */
 .spinner-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem; /* Modern spacing */
+    display         : flex;
+    flex-direction  : column;
+    align-items     : center;
+    justify-content : center;
+    gap             : 1rem; /* Modern spacing */
 }
 
 /* Logo styling */
 .spinner-logo {
-    width: 50%;
+    width : 50%;
 }
 
 /* Loading text */
 .loading-text {
-    font-size: 2rem;
-    font-weight: 500;
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-    color: white;
+    font-size       : 2rem;
+    font-weight     : 500;
+    margin-top      : 1rem;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    gap             : 0.25rem;
+    color           : white;
 }
 
 /* Ball beat loader */
 .ball-beat-loader {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
+    display    : flex;
+    gap        : 1rem;
+    margin-top : 2rem;
 }
 
 .ball-beat-loader div {
-    width: 30px;
-    height: 30px;
-    background: linear-gradient(45deg, #9333ea, #2563eb);
-    border-radius: 50%;
-    animation: ball-beat 1.4s infinite ease-in-out;
-    box-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
+    width         : 30px;
+    height        : 30px;
+    background    : linear-gradient(45deg, #9333ea, #2563eb);
+    border-radius : 50%;
+    animation     : ball-beat 1.4s infinite ease-in-out;
+    box-shadow    : 0 0 10px rgba(147, 51, 234, 0.5);
 }
 
 .ball-beat-loader div:nth-child(2) {
-    animation-delay: 0.2s;
+    animation-delay : 0.2s;
 }
 
 .ball-beat-loader div:nth-child(3) {
-    animation-delay: 0.4s;
+    animation-delay : 0.4s;
 }
 
 .ball-beat-loader div:nth-child(4) {
-    animation-delay: 0.8s;
+    animation-delay : 0.8s;
 }
 
 /* Keyframes for the animation */
 @keyframes ball-beat {
     0%,
     100% {
-        transform: scale(1);
-        opacity: 1;
+        transform : scale(1);
+        opacity   : 1;
     }
     50% {
-        transform: scale(0.75);
-        opacity: 0.7;
+        transform : scale(0.75);
+        opacity   : 0.7;
     }
 }
 
@@ -219,9 +220,11 @@ body {
 .order-header {
     @apply flex items-center justify-between bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-sm;
 }
+
 .order-id {
     @apply dark:text-white text-lg sm:text-4xl font-extrabold text-center bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent py-2 tracking-wide relative overflow-hidden;
 }
+
 .status-badge-delivered {
     @apply px-4 py-1 text-sm font-medium rounded-full shadow-md transition bg-green-200 text-green-800 shadow-green-300 dark:bg-green-700 dark:text-green-200 dark:shadow-green-900;
 }
@@ -253,6 +256,7 @@ body {
 .order-time {
     @apply w-full lg:w-[50%] mx-auto text-lg sm:text-xl font-semibold dark:text-gray-100 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl shadow-md text-center;
 }
+
 .order-details-item {
     @apply flex items-center gap-2 text-gray-800 dark:text-gray-200;
 }
@@ -491,23 +495,35 @@ body {
 }
 
 .add-to-cart-btn-product {
-    @apply w-[80%] mx-auto block font-bold py-2 px-4 rounded-xl shadow-md bg-gradient-to-r from-white to-gray-200 text-blue-600 transition duration-300;
+    @apply w-[70%] font-bold py-2 px-4 rounded-xl shadow-md bg-gradient-to-r from-white to-gray-200 text-blue-600 transition duration-300;
 }
 
 .add-to-cart-btn-product:hover {
     @apply scale-105 bg-gradient-to-r from-blue-600 to-purple-600 text-white;
 }
 
+.wishlist-btn {
+    @apply w-[20%] font-bold py-2 px-4 rounded-xl shadow-md bg-gradient-to-r from-white to-gray-200 text-red-600 transition duration-300;
+}
+
+.wishlist-btn:hover {
+    @apply scale-105 bg-gradient-to-r from-red-600 to-pink-600 text-white;
+}
+
+.wishlist-details-btn {
+    @apply w-[100%] lg:w-[25%] mx-0 px-6 py-3 font-semibold text-white bg-gradient-to-r from-pink-500 to-red-500 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2;
+}
+
 .card {
     button {
-        transform: translateY(110%);
-        transition: all 0.8s;
-        opacity: 0;
+        transform  : translateY(110%);
+        transition : all 0.8s;
+        opacity    : 0;
     }
 
     &:hover button {
-        transform: translateY(0%);
-        opacity: 1;
+        transform : translateY(0%);
+        opacity   : 1;
     }
 }
 

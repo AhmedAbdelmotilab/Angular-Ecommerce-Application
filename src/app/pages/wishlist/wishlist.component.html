@@ -1,0 +1,60 @@
+@if (userWishlist.at(0)) {
+    <section class = "cart-section">
+        <div class = "header-gradient">
+            <h2 class = "text-3xl font-bold text-center">Your WishList </h2>
+        </div>
+        <!-- Product List -->
+        @for (product of userWishlist; track product.id) {
+            <div class = "cart-item-list">
+                <div class = "cart-item">
+                    <!-- Product Image -->
+                    <div class = "product-image">
+                        <img
+                            alt = "Product Image"
+                            class = "product-img"
+                            [src] = "product.imageCover"
+                        >
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class = "product-details">
+                        <h2 class = "product-title">{{ product.title.split(" ", 2).join(" ") }}</h2>
+                        <p class = "product-price">
+                            {{ product.price | currency:'GBP':'symbol':'1.2-2' }}
+                        </p>
+                    </div>
+
+                    <!-- Remove Product -->
+                    <button
+                        (click) = "deleteProductFromWishlist(product.id)"
+                        class = "remove-product-btn"
+                    >
+                        <svg
+                            class = "remove-product-icon"
+                            fill = "none"
+                            stroke = "currentColor"
+                            viewBox = "0 0 24 24"
+                            xmlns = "http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d = "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                stroke-linecap = "round"
+                                stroke-linejoin = "round"
+                                stroke-width = "2"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        }
+    </section>
+} @else {
+
+    <section class = "empty-cart-section">
+        <img
+            class = "w-full  lg:w-2/5 "
+            src = "../images/WishList.svg"
+            alt = ""
+        >
+    </section>
+}

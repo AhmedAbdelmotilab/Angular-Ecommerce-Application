@@ -6,6 +6,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { CartService } from '../../core/services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 
 @Component ( {
     selector : 'app-details' ,
@@ -21,10 +22,12 @@ export class DetailsComponent implements OnInit , OnDestroy {
     mainImage : string = '';
     subscribeProductDetails : Subscription = new Subscription ();
     subscribeAddProductToCard : Subscription = new Subscription ();
+    subscribeAddProductToWishlist : Subscription = new Subscription ();
     private readonly productsService = inject ( ProductsService );
     private readonly activatedRoute = inject ( ActivatedRoute );
     private readonly cart = inject ( CartService );
     private readonly toastrService = inject ( ToastrService );
+    private readonly wishlistService = inject ( WishlistService );
 
     getProductDetails () : void {
         this.activatedRoute.paramMap.subscribe ( {
@@ -57,6 +60,17 @@ export class DetailsComponent implements OnInit , OnDestroy {
         } );
     }
 
+    addProductToWishlist ( id : string ) : void {
+        this.subscribeAddProductToWishlist = this.wishlistService.addProductToWishlist ( id ).subscribe ( {
+            next : ( res ) => {
+                console.log ( res );
+                if ( res.status === 'success' ) {
+                    this.toastrService.success ( res.message , 'Creative Market' );
+                }
+            }
+        } );
+    }
+
     changeMainImage ( image : string ) : void {
         this.mainImage = image;
     }
@@ -68,5 +82,7 @@ export class DetailsComponent implements OnInit , OnDestroy {
     ngOnDestroy () {
         this.subscribeProductDetails.unsubscribe ();
         console.log ( 'UnsubscribeProductDetailsDone' );
+        this.subscribeAddProductToWishlist.unsubscribe ();
+        console.log ( 'UnsubscribeAddProductToWishlistDone' );
     }
 }
