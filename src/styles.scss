@@ -503,7 +503,7 @@ body {
 
 .card {
     button {
-        @apply lg:translate-y-[140%] sm:translate-y-0 transition-all duration-1000 sm:opacity-0 lg:opacity-100;
+        @apply lg:translate-y-[140%] translate-y-[-15%] transition-all duration-1000 sm:opacity-0 lg:opacity-100;
     }
 
     &:hover button {
