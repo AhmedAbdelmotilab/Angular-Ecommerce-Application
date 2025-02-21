@@ -4,7 +4,7 @@ import { IProduct } from '../../shared/interfaces/iproduct';
 import { CategoriesService } from '../../core/services/categories/categories.service';
 import { ICategory } from '../../shared/interfaces/icategory';
 import { CarouselModule , OwlOptions } from 'ngx-owl-carousel-o';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe , TitleCasePipe } from '@angular/common';
 import { SearchPipe } from '../../shared/pipes/search/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -15,7 +15,7 @@ import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 
 @Component ( {
     selector : 'app-home' ,
-    imports : [ CarouselModule , CurrencyPipe , SearchPipe , FormsModule , RouterLink ] ,
+    imports : [ CarouselModule , CurrencyPipe , SearchPipe , FormsModule , RouterLink , TitleCasePipe ] ,
     templateUrl : './home.component.html' ,
     styleUrl : './home.component.scss'
 } )

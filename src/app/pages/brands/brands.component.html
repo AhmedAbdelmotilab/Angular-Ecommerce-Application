@@ -5,45 +5,48 @@
     <div class = "brand-container">
         <!-- Card Container -->
         @for (brand of brands; track brand._id) {
-            <div class = "brand-card">
-                <!-- Brand Image Section -->
-                <div class = "brand-image-container">
-                    <img
-                        [alt] = brand.name
-                        class = "brand-image"
-                        [src] = brand.image
-                    />
-                </div>
-                <!-- Brand Details Section -->
-                <div class = "brand-details">
+            <div class = "card">
+                <div class = "card-link">
+                    <div class = "brand-card">
+                        <!-- Brand Image Section -->
+                        <div class = "brand-image-container">
+                            <img
+                                [alt] = brand.name
+                                class = "brand-image"
+                                [src] = brand.image
+                            />
+                        </div>
+                        <!-- Brand Details Section -->
+                        <div class = "brand-details">
 
-                    <!-- Brand Name -->
-                    <h2 class = "brand-name">
-                        {{ brand.name | uppercase }}
-                    </h2>
-                    <!-- Brand Details List -->
-                    <div class = "brand-details-list">
-
-                        <!-- Slug -->
-                        <div class = "brand-detail-item">
-                            <span class = "detail-label">Slug:</span>
-                            <span class = "detail-value">
+                            <!-- Brand Name -->
+                            <h2 class = "brand-name">
+                                {{ brand.name | uppercase }}
+                            </h2>
+                            <!-- Brand Details List -->
+                            <div class = "brand-details-list">
+                                <!-- Slug -->
+                                <div class = "brand-detail-item">
+                                    <span class = "detail-label">Slug:</span>
+                                    <span class = "detail-value">
                             {{ brand.slug | titlecase }}
                         </span>
-                        </div>
-                        <!-- Created At -->
-                        <div class = "brand-detail-item">
-                            <span class = "detail-label">Created At:</span>
-                            <span class = "detail-value">
+                                </div>
+                                <!-- Created At -->
+                                <div class = "brand-detail-item">
+                                    <span class = "detail-label">Created At:</span>
+                                    <span class = "detail-value">
                             {{ brand.createdAt | date: 'dd/MM/yyyy' }}
                         </span>
-                        </div>
-                        <!-- Updated At -->
-                        <div class = "brand-detail-item">
-                            <span class = "detail-label">Updated At:</span>
-                            <span class = "detail-value">
+                                </div>
+                                <!-- Updated At -->
+                                <div class = "brand-detail-item">
+                                    <span class = "detail-label">Updated At:</span>
+                                    <span class = "detail-value">
                             {{ brand.updatedAt |   date: 'dd/MM/yyyy' }}
                         </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

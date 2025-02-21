@@ -9,7 +9,7 @@ import { ICategory } from '../../shared/interfaces/icategory';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '../../shared/pipes/search/search.pipe';
 import { RouterLink } from '@angular/router';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe , TitleCasePipe } from '@angular/common';
 import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 
 @Component ( {
@@ -19,7 +19,8 @@ import { WishlistService } from '../../core/services/wishlist/wishlist.service';
         FormsModule ,
         SearchPipe ,
         RouterLink ,
-        CurrencyPipe
+        CurrencyPipe ,
+        TitleCasePipe
     ] ,
     styleUrls : [ './products.component.scss' ]
 } )

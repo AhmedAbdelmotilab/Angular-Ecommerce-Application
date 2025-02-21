@@ -34,15 +34,12 @@ body {
     align-items     : center;
     justify-content : center;
     gap             : 1rem;
-    /* Modern spacing */
 }
 
-/* Logo styling */
 .spinner-logo {
     width : 50%;
 }
 
-/* Loading text */
 .loading-text {
     font-size       : 2rem;
     font-weight     : 500;
@@ -54,7 +51,6 @@ body {
     color           : white;
 }
 
-/* Ball beat loader */
 .ball-beat-loader {
     display    : flex;
     gap        : 1rem;
@@ -82,7 +78,6 @@ body {
     animation-delay : 0.8s;
 }
 
-/* Keyframes for the animation */
 @keyframes ball-beat {
     0%,
     100% {
@@ -455,7 +450,7 @@ body {
 }
 
 .card {
-    @apply relative overflow-hidden pb-3 rounded-3xl shadow-xl bg-clip-padding bg-gradient-to-r from-purple-600 to-blue-600 bg-white hover:shadow-2xl hover:shadow-gray-400 dark:hover:shadow-purple-600 dark:bg-[#111827];
+    @apply transition-all duration-500 relative overflow-hidden  rounded-3xl shadow-xl bg-clip-padding bg-gradient-to-r from-purple-600 to-blue-600 bg-white hover:shadow-2xl hover:shadow-gray-400 dark:hover:shadow-purple-600 dark:bg-[#111827];
 }
 
 .card-link {
@@ -474,20 +469,16 @@ body {
     @apply p-4 bg-white rounded-3xl dark:bg-[#111827];
 }
 
-.card-title {
-    @apply px-3 font-semibold text-xl text-black dark:text-white line-clamp-2;
-}
-
 .card-footer {
-    @apply flex flex-row justify-between;
+    @apply flex flex-row justify-between  items-center px-2 py-3 mt-4 bg-gray-100/90 dark:bg-gray-800/50 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800/70 transition-all duration-300 shadow-sm hover:shadow-md;
 }
 
 .card-price {
-    @apply px-3 py-3 flex justify-between items-center text-3xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text;
+    @apply text-2xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text;
 }
 
 .card-rating {
-    @apply flex items-center space-x-1;
+    @apply flex items-center space-x-2;
 }
 
 .add-to-cart-btn-product {
@@ -516,7 +507,7 @@ body {
     }
 
     &:hover button {
-        @apply lg:translate-y-0 lg:opacity-100;
+        @apply lg:translate-y-[-15%] lg:opacity-100;
     }
 }
 
@@ -549,11 +540,11 @@ body {
 }
 
 .brand-container {
-    @apply grid gap-10 px-2 py-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-screen ;
+    @apply grid gap-10 px-2 py-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-screen;
 }
 
 .brand-card {
-    @apply w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden ;
+    @apply w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden;
 }
 
 .brand-image-container {
@@ -561,7 +552,7 @@ body {
 }
 
 .brand-image {
-    @apply w-full object-contain;
+    @apply w-full object-contain rounded-t-2xl;
 }
 
 .brand-details {
@@ -577,7 +568,7 @@ body {
 }
 
 .brand-detail-item {
-    @apply flex items-center space-x-3 p-2 sm:p-3 bg-white/50 dark:bg-gray-800/50 rounded-lg hover:bg-white/70 dark:hover:bg-gray-800/70 transition-all duration-300;
+    @apply flex items-center space-x-3 p-2 sm:p-3 bg-gray-100/90 dark:bg-gray-800/50 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800/70 transition-all duration-300 shadow-sm hover:shadow-md;
 }
 
 .detail-label {

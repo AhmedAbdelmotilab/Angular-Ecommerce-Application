@@ -89,23 +89,22 @@
                             [alt] = "product.title"
                         />
                         <div class = "card-info">
-                            <div class = "card-title">
-                                {{ product.title.split(" ", 2).join(" ") }}
+                            <div class = "brand-details-list">
+                                <div class = "brand-detail-item">
+                                    <span class = "brand-name">{{ product.title.split(" ", 2).join(" ") | titlecase }}</span>
+                                </div>
+                                <div class = "brand-detail-item">
+                                    <span class = "detail-label">Category:</span>
+                                    <span class = "detail-value">{{ product.category?.name || 'Unknown'  | titlecase }}</span>
+                                </div>
+                                <div class = "brand-detail-item">
+                                    <span class = "detail-label">Brand:</span>
+                                    <span class = "detail-value">{{ product.brand.name| titlecase }}</span>
+                                </div>
                             </div>
-                            <div class = "px-3 py-2 text-sm text-gray-700 dark:text-gray-300">
-                                <p class = "mt-1">
-                                    <strong class = "product-category-label">Category:</strong>
-                                    {{ product.category?.name || 'Unknown' }}
-                                </p>
-                                <p class = "mt-1">
-                                    <strong class = "product-brand-label">Brand:</strong>
-                                    {{ product.brand?.name || 'No Brand' }}
-                                </p>
-                            </div>
-
                             <div class = "card-footer">
                                 <div class = "card-price">
-                                    {{ product.price | currency:'GBP':'symbol':'1.0-0' }}
+                                    {{ product.price | currency:'GBP':'symbol':'1.1-1' }}
                                 </div>
                                 <div class = "card-rating flex items-center">
                                     <div class = "flex">
@@ -121,7 +120,6 @@
                                     </div>
                                     <span class = "text-gray-800 font-medium dark:text-white mr-2">{{ product.ratingsAverage }}</span>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -140,7 +138,6 @@
                         <i class = "fa fa-heart"></i>
                     </button>
                 </div>
-
             </div>
         }
     </div>
