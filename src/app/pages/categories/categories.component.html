@@ -1,30 +1,49 @@
-<section class = "section">
+<section class = "brand-section">
     <h2 class = "heading">
         ✨ Our Categories ✨
     </h2>
-    <div class = "card-container">
+    <div class = "brand-container">
+        <!-- Card Container -->
         @for (category of categories; track category._id) {
-            <div class = "card">
-                <div
-                    class = "card-link"
-                >
-                    <div class = "card-content">
-                        <img
-                            class = "card-image"
-                            [src] = "category.image"
-                            [alt] = "category.name"
-                        />
-                        <div class = "card-info">
-                            <div class = "px-3 py-2 text-lg text-gray-700 dark:text-gray-300">
-                                <p class = "mt-1">
-                                    <strong class = "product-category-label">Category:</strong>
-                                    {{ category?.name || 'Unknown' }}
-                                </p>
-                                <p class = "mt-2">
-                                    <strong class = "product-brand-label">Slug:</strong>
-                                    {{ category?.slug || 'No Brand' }}
-                                </p>
-                            </div>
+            <div class = "brand-card">
+                <!-- Category Image Section -->
+                <div class = "brand-image-container">
+                    <img
+                        [alt] = category.name
+                        class = "brand-image h-[250px]"
+                        [src] = category.image
+                    />
+                </div>
+                <!-- Category Details Section -->
+                <div class = "brand-details">
+
+                    <!-- Category Name -->
+                    <h2 class = "brand-name">
+                        {{ category.name | uppercase }}
+                    </h2>
+                    <!-- Category Details List -->
+                    <div class = "brand-details-list">
+
+                        <!-- Slug -->
+                        <div class = "brand-detail-item">
+                            <span class = "detail-label">Slug:</span>
+                            <span class = "detail-value">
+                            {{ category.slug | titlecase }}
+                        </span>
+                        </div>
+                        <!-- Created At -->
+                        <div class = "brand-detail-item">
+                            <span class = "detail-label">Created At:</span>
+                            <span class = "detail-value">
+                            {{ category.createdAt | date: 'dd/MM/yyyy' }}
+                        </span>
+                        </div>
+                        <!-- Updated At -->
+                        <div class = "brand-detail-item">
+                            <span class = "detail-label">Updated At:</span>
+                            <span class = "detail-value">
+                            {{ category.updatedAt |   date: 'dd/MM/yyyy' }}
+                        </span>
                         </div>
                     </div>
                 </div>

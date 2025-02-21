@@ -4,10 +4,11 @@ import { Subscription } from 'rxjs';
 import { IProduct } from '../../shared/interfaces/iproduct';
 import { CurrencyPipe } from '@angular/common';
 import Swal from 'sweetalert2';
+import { RouterLink } from '@angular/router';
 
 @Component ( {
     selector : 'app-wishlist' ,
-    imports : [ CurrencyPipe ] ,
+    imports : [ CurrencyPipe , RouterLink ] ,
     templateUrl : './wishlist.component.html' ,
     styleUrl : './wishlist.component.scss'
 } )

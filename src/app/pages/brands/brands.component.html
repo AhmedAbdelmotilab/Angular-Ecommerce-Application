@@ -1,4 +1,7 @@
 <section class = "brand-section">
+    <h2 class = "heading">
+        ✨ Our Brands ✨
+    </h2>
     <div class = "brand-container">
         <!-- Card Container -->
         @for (brand of brands; track brand._id) {
@@ -6,7 +9,7 @@
                 <!-- Brand Image Section -->
                 <div class = "brand-image-container">
                     <img
-                        alt = "Canon Logo"
+                        [alt] = brand.name
                         class = "brand-image"
                         [src] = brand.image
                     />

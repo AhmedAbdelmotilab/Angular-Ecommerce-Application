@@ -3,11 +3,15 @@ import { CategoriesService } from '../../core/services/categories/categories.ser
 import { ICategory } from '../../shared/interfaces/icategory';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { DatePipe , TitleCasePipe , UpperCasePipe } from '@angular/common';
 
 @Component ( {
     selector : 'app-categories' ,
     imports : [
-        FormsModule
+        FormsModule ,
+        UpperCasePipe ,
+        TitleCasePipe ,
+        DatePipe
     ] ,
     templateUrl : './categories.component.html' ,
     styleUrl : './categories.component.scss'
