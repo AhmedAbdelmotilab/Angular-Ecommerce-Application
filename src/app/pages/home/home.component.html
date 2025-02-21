@@ -72,11 +72,11 @@
         @for (product of products.slice(0, 12) | search :searchInput; track product.id) {
             <div class = "card">
                 <div
-                    [routerLink] = "['/details', product.id]"
                     class = "card-link"
                 >
                     <div class = "card-content">
                         <img
+                            [routerLink] = "['/details', product.id]"
                             class = "card-image"
                             [src] = "product.imageCover"
                             [alt] = "product.title"
