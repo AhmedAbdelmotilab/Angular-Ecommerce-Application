@@ -1,5 +1,13 @@
 <router-outlet></router-outlet>
-
+@if (showScrollButton) {
+    <button
+        (click) = "scrollToTop()"
+        aria-label = "Scroll to top"
+        class = "scroll-up"
+    >
+        <i class = "fas fa-arrow-up text-lg"></i>
+    </button>
+}
 <ngx-spinner
     [fullScreen] = "true"
     bdColor = "rgba(0, 0, 0, 0.5)"

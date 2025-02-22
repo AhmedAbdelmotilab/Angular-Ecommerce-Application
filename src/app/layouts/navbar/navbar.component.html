@@ -95,7 +95,9 @@
                 <ul
                     class = "flex flex-row justify-around items-center p-4 sm:px-10 mx-auto mt-4 rounded-lg bg-white/10 text-center font-medium capitalize  md:bg-transparent md:p-0 md:mt-0 md:space-x-6 rtl:space-x-reverse"
                 >
-                    <li>
+                    <li
+                        class = "relative inline-flex items-center  text-sm font-medium text-center text-white "
+                    >
                         <a
                             routerLink = "/cart"
                             routerLinkActive = "active"
@@ -103,8 +105,11 @@
                         >
                             <i class = "fas fa-cart-shopping text-2xl"></i>
                         </a>
+                        <div class = "badge">{{ productsCartBadge }}</div>
                     </li>
-                    <li>
+                    <li
+                        class = "relative inline-flex items-center  text-sm font-medium text-center text-white "
+                    >
                         <a
                             routerLink = "/allorders"
                             routerLinkActive = "active"
@@ -112,8 +117,11 @@
                         >
                             <i class = "fas fa-truck-fast text-2xl"></i>
                         </a>
+                        <div class = "badge">{{ userOrdersBadge }}</div>
                     </li>
-                    <li>
+                    <li
+                        class = "relative inline-flex items-center  text-sm font-medium text-center text-white "
+                    >
                         <a
                             routerLink = "/wishlist"
                             routerLinkActive = "active"
@@ -121,6 +129,7 @@
                         >
                             <i class = "fa-solid fa-heart text-2xl"></i>
                         </a>
+                        <div class = "badge">{{ productsWishlistBadge }}</div>
                     </li>
 
                 </ul>

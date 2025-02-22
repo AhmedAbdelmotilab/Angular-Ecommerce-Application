@@ -28,8 +28,12 @@
                             {{ product.price | currency : "GBP" : "symbol" : "1.2-2" }}
                         </p>
                     </div>
-
-                    <!-- Remove Product -->
+                    <button
+                        (click) = "addProductToCart(product.id)"
+                        class = "add-to-cart-btn"
+                    >
+                        Add to Cart
+                    </button>
                     <button
                         (click) = "deleteProductFromWishlist(product.id)"
                         class = "remove-product-btn"

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject , Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable ( {
     providedIn : 'root'
 } )
 export class CartService {
+    numberOfCartItems : BehaviorSubject<number> = new BehaviorSubject ( 0 );
 
     constructor ( private httpClient : HttpClient ) { }
 

@@ -20,13 +20,16 @@ import { WishlistService } from '../../core/services/wishlist/wishlist.service';
     styleUrl : './home.component.scss'
 } )
 export class HomeComponent implements OnInit , OnDestroy {
+    searchInput : string = '';
     products : IProduct[] = [];
     categories : ICategory[] = [];
+    userWishlist : IProduct[] = [];
+    userWishlistIds : string[] = [];
     subscribeAllCategories : Subscription = new Subscription ();
     subscribeAllProducts : Subscription = new Subscription ();
     subscribeAddProductToCard : Subscription = new Subscription ();
     subscribeAddProductToWishlist : Subscription = new Subscription ();
-    searchInput : string = '';
+    subscribeGetLoggedUserWishlist : Subscription = new Subscription ();
     images : string[] = [
         '../images/img1.avif' ,
         '../images/img2.avif' ,
@@ -76,7 +79,7 @@ export class HomeComponent implements OnInit , OnDestroy {
     private readonly productsServices = inject ( ProductsService );
     private readonly categoriesServices = inject ( CategoriesService );
     private readonly wishlistService = inject ( WishlistService );
-    private readonly cart = inject ( CartService );
+    private readonly cartService = inject ( CartService );
     private readonly toastrService = inject ( ToastrService );
 
     getAllCategories () : void {
@@ -99,22 +102,45 @@ export class HomeComponent implements OnInit , OnDestroy {
     }
 
     addProductToCart ( id : string ) : void {
-        this.subscribeAddProductToCard = this.cart.addProductToCart ( id ).subscribe ( {
+        this.subscribeAddProductToCard = this.cartService.addProductToCart ( id ).subscribe ( {
             next : ( res ) => {
                 console.log ( res );
                 if ( res.status === 'success' ) {
                     this.toastrService.success ( res.message , 'Creative Market' );
+                    this.cartService.numberOfCartItems.next ( res.numOfCartItems );
+                    console.log ( this.cartService.numberOfCartItems.getValue () );
                 }
             }
         } );
     }
 
+    getLoggedUserWishlist () : void {
+        this.subscribeGetLoggedUserWishlist = this.wishlistService.getLoggedUserWishlist ().subscribe ( {
+            next : ( res : { data : IProduct[] } ) => {
+                this.userWishlist = [];
+                this.userWishlistIds = [];
+                res.data.forEach ( ( item : IProduct ) => {
+                    this.userWishlist.push ( item );
+                    this.userWishlistIds.push ( item.id );
+                } );
+                console.log ( 'Wishlist IDs' , this.userWishlistIds );
+            }
+        } );
+    }
+
     addProductToWishlist ( id : string ) : void {
+        if ( this.userWishlistIds.includes ( id ) ) {
+            this.toastrService.warning ( 'This product is already in your wishlist!' , 'Creative Market' );
+            return;
+        }
         this.subscribeAddProductToWishlist = this.wishlistService.addProductToWishlist ( id ).subscribe ( {
             next : ( res ) => {
                 console.log ( res );
                 if ( res.status === 'success' ) {
                     this.toastrService.success ( res.message , 'Creative Market' );
+                    this.wishlistService.numberOfWishlistItems.next ( res.data.length );
+                    this.userWishlist.push ( res.data );
+                    this.userWishlistIds.push ( id );
                 }
             }
         } );
@@ -123,6 +149,8 @@ export class HomeComponent implements OnInit , OnDestroy {
     ngOnInit () {
         this.getAllProducts ();
         this.getAllCategories ();
+        this.getLoggedUserWishlist ();
+
     }
 
     ngOnDestroy () {
@@ -132,6 +160,8 @@ export class HomeComponent implements OnInit , OnDestroy {
         console.log ( 'UnsubscribeAllProductsDone' );
         this.subscribeAddProductToCard.unsubscribe ();
         console.log ( 'UnsubscribeAddToCardDone' );
+        this.subscribeGetLoggedUserWishlist.unsubscribe ();
+        console.log ( 'UnsubscribeGetLoggedUserWishlistDone' );
         this.subscribeAddProductToWishlist.unsubscribe ();
         console.log ( 'UnsubscribeAddProductToWishlistDone' );
     }

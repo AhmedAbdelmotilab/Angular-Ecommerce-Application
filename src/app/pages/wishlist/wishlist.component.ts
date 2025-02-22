@@ -5,6 +5,8 @@ import { IProduct } from '../../shared/interfaces/iproduct';
 import { CurrencyPipe } from '@angular/common';
 import Swal from 'sweetalert2';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../core/services/cart/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component ( {
     selector : 'app-wishlist' ,
@@ -16,10 +18,13 @@ export class WishlistComponent implements OnInit , OnDestroy {
     userWishlist : IProduct[] = [];
     subscribeGetLoggedUserWishlist : Subscription = new Subscription ();
     subscribeDeleteProductFromWishlist : Subscription = new Subscription ();
-    private readonly WishlistService = inject ( WishlistService );
+    subscribeAddProductToCard : Subscription = new Subscription ();
+    private readonly cartService = inject ( CartService );
+    private readonly wishlistService = inject ( WishlistService );
+    private readonly toastrService = inject ( ToastrService );
 
     getLoggedUserWishlist () : void {
-        this.subscribeGetLoggedUserWishlist = this.WishlistService.getLoggedUserWishlist ().subscribe ( {
+        this.subscribeGetLoggedUserWishlist = this.wishlistService.getLoggedUserWishlist ().subscribe ( {
             next : ( res ) => {
                 console.log ( res );
                 this.userWishlist = res.data;
@@ -45,7 +50,7 @@ export class WishlistComponent implements OnInit , OnDestroy {
 
         } ).then ( ( result ) => {
             if ( result.isConfirmed ) {
-                this.subscribeDeleteProductFromWishlist = this.WishlistService.deleteProductFromWishlist ( id ).subscribe ( {
+                this.subscribeDeleteProductFromWishlist = this.wishlistService.deleteProductFromWishlist ( id ).subscribe ( {
                     next : ( res ) => {
                         console.log ( res );
                         this.getLoggedUserWishlist ();
@@ -62,11 +67,27 @@ export class WishlistComponent implements OnInit , OnDestroy {
                                 showConfirmButton : true
                             } );
                         }
+                        this.wishlistService.numberOfWishlistItems.next ( res.data.length );
                     }
                 } );
             }
         } );
     }
+
+    addProductToCart ( id : string ) : void {
+        this.subscribeAddProductToCard = this.cartService.addProductToCart ( id ).subscribe ( {
+            next : ( res ) => {
+                console.log ( res );
+                if ( res.status === 'success' ) {
+                    this.toastrService.success ( res.message , 'Creative Market' );
+                }
+            } ,
+            error : ( err ) => {
+                console.log ( err );
+            }
+        } );
+    }
+
 
     ngOnInit () {
         this.getLoggedUserWishlist ();

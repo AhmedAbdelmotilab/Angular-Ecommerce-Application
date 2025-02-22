@@ -20,10 +20,10 @@ export class CartComponent implements OnInit , OnDestroy {
     subscribeClearUserCart : Subscription = new Subscription ();
     userCartData : ICart = {} as ICart;
 
-    private readonly cart = inject ( CartService );
+    private readonly cartService = inject ( CartService );
 
     getLoggedUserCart () : void {
-        this.subscribeGetLoggedUserCart = this.cart.getLoggedUserCart ().subscribe ( {
+        this.subscribeGetLoggedUserCart = this.cartService.getLoggedUserCart ().subscribe ( {
             next : ( res ) => {
                 console.log ( res );
                 this.userCartData = res.data;
@@ -48,7 +48,7 @@ export class CartComponent implements OnInit , OnDestroy {
 
         } ).then ( ( result ) => {
             if ( result.isConfirmed ) {
-                this.subscribeRemoveSpecificCartItem = this.cart.removeSpecificCartItem ( id ).subscribe ( {
+                this.subscribeRemoveSpecificCartItem = this.cartService.removeSpecificCartItem ( id ).subscribe ( {
                     next : ( res ) => {
                         console.log ( res );
                         this.userCartData = res.data;
@@ -64,6 +64,7 @@ export class CartComponent implements OnInit , OnDestroy {
                                 timerProgressBar : true ,
                                 showConfirmButton : true
                             } );
+                            this.cartService.numberOfCartItems.next ( res.numOfCartItems );
                         }
                     }
                 } );
@@ -72,7 +73,7 @@ export class CartComponent implements OnInit , OnDestroy {
     }
 
     updateCartProductQuantity ( id : string , count : number ) {
-        this.subscribeUpdateCartProductQuantity = this.cart.updateCartProductQuantity ( id , count ).subscribe ( {
+        this.subscribeUpdateCartProductQuantity = this.cartService.updateCartProductQuantity ( id , count ).subscribe ( {
             next : ( res ) => {
                 console.log ( res );
                 this.userCartData = res.data;
@@ -109,7 +110,7 @@ export class CartComponent implements OnInit , OnDestroy {
 
         } ).then ( ( result ) => {
             if ( result.isConfirmed ) {
-                this.subscribeClearUserCart = this.cart.clearUserCart ().subscribe ( {
+                this.subscribeClearUserCart = this.cartService.clearUserCart ().subscribe ( {
                     next : ( res ) => {
                         console.log ( res );
                         this.userCartData = {} as ICart;
@@ -125,6 +126,7 @@ export class CartComponent implements OnInit , OnDestroy {
                                 timerProgressBar : true ,
                                 showConfirmButton : true
                             } );
+                            this.cartService.numberOfCartItems.next ( 0 );
                         }
                     }
                 } );
