@@ -1,7 +1,3 @@
-Here’s the updated version of the README with the **Table of Contents** section added and the **images integrated in the right places**:
-
----
-
 # FreshCart E-commerce 🛒  
 **A Modern Angular E-commerce Application**  
 
