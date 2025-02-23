@@ -1,3 +1,7 @@
+Here’s the updated version of the README with the **Table of Contents** section added and the **images integrated in the right places**:
+
+---
+
 # FreshCart E-commerce 🛒  
 **A Modern Angular E-commerce Application**  
 
@@ -25,7 +29,7 @@
 
 **FreshCart** is a modern, fully responsive e-commerce application built with **Angular** and styled with **Tailwind CSS**. It provides a seamless shopping experience with features like user authentication, product search, wishlist management, and a user-friendly cart system. Designed with performance and aesthetics in mind, FreshCart is a perfect example of a modern web application.  
 
-👉 **Live Demo**: [FreshCart Live Demo](#) *(Add your live demo link here)*  
+👉 **Live Demo**: [FreshCart Live Demo](https://angular-ecommerce-application.vercel.app/) 
 
 ---
 
@@ -137,7 +141,7 @@
 
 ## Deployment 🚀  
 
-The application is deployed and accessible at [https://angular-ecommerce-application.vercel.app](https://angular-ecommerce-application.vercel.app). Deployment is managed through Vercel, offering features like automatic HTTPS and global CDN for optimal performance.  
+The application is deployed and accessible at [https://angular-ecommerce-application.vercel.app](https://angular-ecommerce-application.vercel.app/). Deployment is managed through Vercel, offering features like automatic HTTPS and global CDN for optimal performance.  
 
 ---
 
@@ -152,12 +156,6 @@ We welcome contributions from the community! If you'd like to contribute to Fres
 5. Open a pull request.  
 
 Please ensure your code follows the project's coding standards and includes relevant documentation.  
-
----
-
-## License 📄  
-
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.  
 
 ---
 
@@ -176,4 +174,3 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 Feel free to explore FreshCart and experience a modern, seamless shopping journey. If you have any questions or feedback, don't hesitate to reach out!  
 
 ---
-
